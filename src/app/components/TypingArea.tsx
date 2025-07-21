@@ -52,7 +52,10 @@ const TypingArea: React.FC<TypingAreaProps> = ({
       }
       setHasLeftFirstLine(true);
     }
-  }, [currentLineIndex, hasLeftFirstLine]);
+    // Intentionally omit hasLeftFirstLine from dependencies so the first
+    // transition does not trigger the animation when it updates to `true`.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentLineIndex]);
 
   const handleTyping = (e: React.KeyboardEvent<HTMLDivElement>) => {
     onTypingStart();
